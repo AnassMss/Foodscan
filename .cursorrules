@@ -1,0 +1,96 @@
+You are an expert in Next.js 14 (App Router), React, TailwindCSS, Node.js (Express), PostgreSQL, and modern API integration techniques.
+
+Project Context
+- Project name: FoodScan Pro
+- Objective: Build a responsive, mobile-first web app allowing users to scan barcodes and meals, analyze nutrition data, track their meals, receive healthy recipe recommendations, and personalized sport improvement tips.
+- Stack: Next.js frontend (Vercel), Node.js backend (Railway), PostgreSQL database, external APIs (OpenFoodFacts, Google Vision API), OAuth2 authentication.
+
+Frontend (Next.js + TailwindCSS)
+- Use functional, declarative React components with TypeScript (preferred).
+- Structure files with exported components, subcomponents, helpers, static content, and types.
+- Prioritize mobile-first design using TailwindCSS utility classes.
+- Use MediaDevices API for capturing meal photos within the browser.
+- Handle async API calls through React hooks (useSWR, useMutation) when appropriate.
+- Organize routing via Next.js App Router (`app/` directory structure).
+- Implement authentication state handling on frontend with secure OAuth2 integration.
+- Optimize for Core Web Vitals (LCP, FID, CLS).
+- Use Suspense and loading states to improve UX during data fetching.
+- Prefer dynamic imports for non-critical components.
+- Implement error boundaries and loading fallbacks.
+
+Backend (Node.js + Express)
+- Structure backend with modular Express routers: Auth, Scan (barcode/photo), Recipes, Tips, Meals.
+- Secure APIs with JWT tokens after OAuth2 login; store sensitive tokens encrypted.
+- Use middleware for authentication checks, validation, error handling, and logging.
+- Integrate with Google Cloud Vision API for photo recognition.
+- Integrate with OpenFoodFacts API for barcode scanning.
+- Use dotenv for environment variable management (Google Vision API keys, DB credentials, etc.)
+- Follow REST principles for API design.
+- Implement centralized error handling and return proper HTTP status codes.
+
+Database (PostgreSQL)
+- Model structure:
+  - Users (OAuth details, profile info)
+  - Meals (linked to users, with timestamp, nutrition summary)
+  - FoodItems (details extracted from scans)
+  - Recipes (stored suggestions)
+  - Tips (personalized sport advice)
+- Use Prisma ORM or knex.js for database access (preferred over raw SQL).
+- Apply data validation and sanitation before writing to DB.
+- Optimize DB with appropriate indexes (e.g., by user_id, created_at for Meals).
+- Handle migrations properly using migration tools.
+
+Authentication (OAuth2.0)
+- Support login via Google, Apple, and email/password.
+- Use OAuth2 standards and best practices.
+- Secure token handling on backend: store refresh tokens securely and encrypted.
+- Implement session expiration and token refresh flows.
+- Protect routes and API endpoints using JWT validation middleware.
+
+API Integrations
+- Barcode scanning:
+  - Use OpenFoodFacts API to fetch nutrition information by barcode.
+  - Cache frequent queries when possible.
+- Meal photo analysis:
+  - Upload image to backend server.
+  - Send image to Google Cloud Vision API.
+  - Parse results to identify food items.
+  - Lookup items in a nutrition database.
+- Handle retries and fallbacks for external API calls.
+
+Security Best Practices
+- Validate all user inputs to prevent injection attacks.
+- Use HTTPS for all communications (both frontend and backend).
+- Secure CORS settings between frontend and backend.
+- Implement rate limiting on backend APIs to prevent abuse.
+- Protect user data with encryption (both at rest and in transit).
+
+Performance and Scalability
+- Use caching where applicable (Redis, SWR caching, HTTP caching headers).
+- Optimize API responses to be minimal and efficient (only send necessary fields).
+- Implement pagination for large datasets (e.g., user meal history).
+- Prepare backend endpoints to be horizontally scalable (stateless services).
+
+Testing and Quality Assurance
+- Write unit and integration tests for frontend (Jest + React Testing Library).
+- Write unit and API tests for backend (Jest + Supertest or similar).
+- Validate API integrations through mocked tests.
+- Use linting and formatting tools (e.g., ESLint, Prettier) for code quality.
+- Perform end-to-end testing on critical user flows (e.g., login, scan, view history).
+
+Key Conventions
+- Frontend: Use PascalCase for component names, camelCase for variables/functions.
+- Backend: Use camelCase for variables and snake_case for database fields.
+- Directory structure should be modular and feature-based.
+- Favor early returns and guard clauses for cleaner code.
+- Follow DRY (Don't Repeat Yourself) and KISS (Keep It Simple) principles.
+
+Documentation and Communication
+- Document public APIs (OpenAPI / Swagger for backend APIs if needed).
+- Maintain README with clear setup instructions for both frontend and backend.
+- Clearly describe environment variables required in a `.env.example` file.
+- Comment complex logic only if necessary; otherwise favor self-explanatory code.
+
+Always align your work with the goals of FoodScan Pro: a fast, secure, and helpful tool for athletes optimizing their nutrition through simple, intelligent scanning and meal tracking.
+
+Refer to official Next.js, Express, PostgreSQL, OpenFoodFacts, and Google Cloud Vision documentation for best practices and updates.

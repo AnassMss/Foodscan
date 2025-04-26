@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 31, 41, 55;
+  --background-rgb: 249, 250, 251;
+  --accent-color: 79, 70, 229;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 249, 250, 251;
+    --background-rgb: 17, 24, 39;
+    --accent-color: 99, 102, 241;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+  min-height: 100vh;
+}
+
+@layer base {
+  h1 {
+    @apply text-3xl font-bold md:text-4xl;
+  }
+  
+  h2 {
+    @apply text-2xl font-bold md:text-3xl;
+  }
+  
+  h3 {
+    @apply text-xl font-bold md:text-2xl;
+  }
+  
+  a {
+    @apply text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300;
+  }
+
+  button, .button {
+    @apply transition-all duration-200;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-white dark:bg-gray-800 rounded-xl shadow-soft p-6;
+  }
+  
+  .btn-primary {
+    @apply bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-4 rounded-lg transition-colors;
+  }
+  
+  .btn-secondary {
+    @apply bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-900 dark:text-white font-medium py-2 px-4 rounded-lg transition-colors;
+  }
+  
+  .input {
+    @apply block w-full rounded-lg border-gray-300 dark:border-gray-700 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-800 text-gray-900 dark:text-white;
+  }
+} 
